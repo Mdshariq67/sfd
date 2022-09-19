@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:better_player/better_player.dart';
+import 'package:safetfirst/course_video.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -13,7 +15,7 @@ class _Course_detailsState extends State<Course_details> {
   fetchCoursedetails() async {
     var url;
     url = await http.get(Uri.parse(
-        "https://tossas.in/youngman/software/api/course-details/1"));
+        "https://tossas.in/youngman/software/api/course-details/2"));
     // .get(Uri.parse("https://vrt.vahanacloud.com/router/engine/v1/"));
     return json.decode(url.body)['data'];
   }
@@ -36,7 +38,20 @@ class _Course_detailsState extends State<Course_details> {
           child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Container(height: 260,),
+            Padding(
+              padding: const EdgeInsets.only(top: 40.0),
+              child:
+              AspectRatio(
+                aspectRatio: 16 / 9,
+                child: BetterPlayer.network(
+                  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+
+                  betterPlayerConfiguration: BetterPlayerConfiguration(
+                   autoPlay: true,
+                    aspectRatio: 16 / 9,
+                  ),
+                ),
+              ),),
             Container(
               color: Colors.white,
               height:  MediaQuery.of(context).size.height*0.10,
@@ -72,14 +87,14 @@ class _Course_detailsState extends State<Course_details> {
             Divider(color: Colors.black,thickness: 1.1,),
             Container(
               color: Colors.white,
-              height:  MediaQuery.of(context).size.height*0.08,
+              height:  MediaQuery.of(context).size.height*0.04,
               width: MediaQuery.of(context).size.width*0.95,
               child: Row(
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(2.0),
                     child: Container(
-                      width:90,
+                      width:70,
                       height:58,
 
                       decoration: BoxDecoration(
@@ -95,7 +110,7 @@ class _Course_detailsState extends State<Course_details> {
                     ),
                         borderRadius: BorderRadius.circular(10)
                       ),
-                      child: Center(child: Text("4.5",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),)),
+                      child: Center(child: Text("4.5",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: Colors.white),)),
                     ),
                   ),
                   Padding(
@@ -108,7 +123,7 @@ class _Course_detailsState extends State<Course_details> {
                   ),
 
                 ],
-                
+
               ),
             ),
             Divider(color: Colors.black,thickness: 1.1),
@@ -126,7 +141,7 @@ class _Course_detailsState extends State<Course_details> {
                     Text(
                       snapshot.data["course"]["description"].toString(),
 
-                      style: TextStyle(color: Colors.black,fontSize: 30),
+                      style: TextStyle(color: Colors.black,fontSize: 15),
                     ),
 
 
@@ -150,27 +165,35 @@ class _Course_detailsState extends State<Course_details> {
             ),
             ),
             Divider(color: Colors.black,thickness: 1.1),
-            Container(
-              color: Colors.white,
-              height:  MediaQuery.of(context).size.height*0.15,
-              width: MediaQuery.of(context).size.width*0.95,
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children:[
-
-                    Text("Description",style: TextStyle(fontSize: 20,color: Colors.grey),),
-
-                    Text(
-                      snapshot.data["course"]["description"].toString(),
-
-                      style: TextStyle(color: Colors.black,fontSize: 30),
-                    ),
-
-
-
-                  ] ),
+            SizedBox(
+              height:MediaQuery.of(context).size.height*0.1 ,
             ),
-            Divider(color: Colors.black,thickness: 1.1),
+            Container(
+              height:  MediaQuery.of(context).size.height*0.06,
+              width: MediaQuery.of(context).size.width*0.95,
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.bottomLeft,
+                    end: Alignment.topRight,
+
+                    colors: [
+
+                      Color.fromRGBO(19,130,10,1),
+                      Color.fromRGBO(31,154,108,1),
+                    ],
+                  ), borderRadius: BorderRadius.circular(20)),
+              child: FlatButton(
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder:(context)=>Course_video()));
+
+                },
+                child: Text(
+                  'Buy Now',
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+              ),
+            ),
+
           ],
       ),
         );

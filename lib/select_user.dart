@@ -1,14 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:safetfirst/Course_details.dart';
-import 'package:safetfirst/HomePage.dart';
+
 import 'package:safetfirst/Logo.dart';
-import 'package:safetfirst/SignUp.dart';
-import 'package:safetfirst/Update_Password.dart';
+
+
 import 'package:safetfirst/Welcome.dart';
-import 'package:safetfirst/courses_list.dart';
-import 'package:safetfirst/forget_password.dart';
-import 'package:safetfirst/verification.dart';
+import 'package:safetfirst/final_quiz.dart';
+import 'package:visible_opacity/visible_opacity.dart';
+
  
 
 class Select_User extends StatefulWidget {
@@ -19,8 +18,12 @@ class Select_User extends StatefulWidget {
 }
 
 class _Select_UserState extends State<Select_User> {
+
+
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(extendBodyBehindAppBar: true,
 
 
@@ -102,8 +105,9 @@ class _Select_UserState extends State<Select_User> {
                 ), borderRadius: BorderRadius.circular(20)),
             child: FlatButton(
               onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>FinalQuiz()));
 
-Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
+
 
               },
               child: Text(

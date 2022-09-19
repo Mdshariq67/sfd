@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:govt_documents_validator/govt_documents_validator.dart';
+import 'package:safetfirst/HomePage.dart';
 import 'package:safetfirst/Logo.dart';
+import 'package:safetfirst/SignUp.dart';
+import 'package:safetfirst/login.dart';
 
 class Uidai extends StatefulWidget {
   const Uidai({Key? key}) : super(key: key);
@@ -15,6 +18,7 @@ class _UidaiState extends State<Uidai> {
 
   AadharValidator aadharValidator = new AadharValidator();
   void _submit() {
+
     final isValid = _formKey.currentState!.validate();
     if (!isValid) {
       return;
@@ -42,28 +46,32 @@ class _UidaiState extends State<Uidai> {
 
     children: <Widget>[
       Padding(
-        padding: const EdgeInsets.only(top: 1.0),
+        padding: const EdgeInsets.all(8),
         child: Center(
           child: Logo(),
         ),
       ),
-    TextFormField(
-    maxLength: 12,
-    cursorColor: Colors.green,
-    decoration: InputDecoration(
-    labelText: 'Aadhar Number',
-    border: OutlineInputBorder(
-    borderRadius: BorderRadius.circular(25.0),
-    borderSide: BorderSide(color: Colors.black),
-    ),
-    ),
-    onFieldSubmitted: (value) {},
-    validator: (value) {
-    if (aadharValidator.validate(value!) == true) {
-    return null;
-    }
-    return "Incorrect Aadhar Number";
-    },
+    Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: TextFormField(
+      maxLength: 12,
+      cursorColor: Colors.green,
+      decoration: InputDecoration(
+      labelText: 'Aadhar Number',
+
+      border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(25.0),
+      borderSide: BorderSide(color: Colors.black),
+      ),
+      ),
+      onFieldSubmitted: (value) {},
+      validator: (value) {
+      if (aadharValidator.validate(value!) == true) {
+      return null;
+      }
+      return "Incorrect Aadhar Number";
+      },
+      ),
     ),
       Container(
         height: 50,
@@ -80,7 +88,17 @@ class _UidaiState extends State<Uidai> {
               ],
             ), borderRadius: BorderRadius.circular(20)),
         child: FlatButton(
-          onPressed: () => _submit(),
+          onPressed: () {
+            if (_formKey.currentState!.validate()) {
+              Navigator.push(context, MaterialPageRoute(builder:(context)=>LogIn()));
+              // If the form is valid, display a snackbar. In the real world,
+              // you'd often call a server or save the information in a database.
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Aaadhar Verified')),
+              );
+            }
+
+          },
 
 
 
@@ -97,4 +115,5 @@ class _UidaiState extends State<Uidai> {
     //box styling
     );
   }
+
 }

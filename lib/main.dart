@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:safetfirst/Course_details.dart';
 import 'package:safetfirst/HomePage.dart';
+import 'package:safetfirst/Quiz_Screen.dart';
 import 'package:safetfirst/SignUp.dart';
 import 'package:safetfirst/Update_Password.dart';
+import 'package:safetfirst/Video_Player.dart';
 import 'package:safetfirst/Welcome.dart';
 import 'package:safetfirst/courses_list.dart';
 import 'package:safetfirst/forget_password.dart';
@@ -13,6 +15,7 @@ import 'package:safetfirst/forget_password.dart';
 import 'package:safetfirst/login.dart';
 import 'package:safetfirst/otp.dart';
 import 'package:safetfirst/profile.dart';
+import 'package:safetfirst/quiz1.dart';
 import 'package:safetfirst/select_user.dart';
 import 'package:safetfirst/user.dart';
 import 'package:safetfirst/verification.dart';
@@ -42,7 +45,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home:Course_list(),
+      home:Select_User(),
       debugShowCheckedModeBanner: false,
     );
   }

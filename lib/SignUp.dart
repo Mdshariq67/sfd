@@ -64,7 +64,10 @@ class _SignUpState extends State<SignUp> {
                 child: TextFormField(
                   controller: _name,
                   keyboardType: TextInputType.text,
-                  decoration: buildInputDecoration(Icons.person,"Name"),
+                  decoration: buildInputDecoration(Icons.person,"Name",
+
+                  ),
+
                   validator: (String? value){
                     if(value!.isEmpty)
                     {
@@ -121,7 +124,7 @@ class _SignUpState extends State<SignUp> {
                   validator: (String? value){
                     if(value!.isEmpty)
                     {
-                      return 'Please a Enter Password';
+                      return 'Please  Enter Password';
                     }
                     return null;
                   },
@@ -134,10 +137,11 @@ class _SignUpState extends State<SignUp> {
                   controller: _aadhar,
                   keyboardType: TextInputType.text,
                   decoration:buildInputDecoration(Icons.dock,"Aadhar"),
+
                   validator: (String? value){
                     if(value!.isEmpty)
                     {
-                      return 'Please a Enter aadhar';
+                      return 'Please Enter Your aadhar';
                     }
                     return null;
                   },

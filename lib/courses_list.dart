@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
 import 'package:http/http.dart' as http;
+import 'package:safetfirst/Course_details.dart';
+import 'package:safetfirst/Quiz_Screen.dart';
 
 class Course_list extends StatefulWidget {
   @override
@@ -124,8 +126,8 @@ class _Course_listState extends State<Course_list> {
                                         ),
                                       ),
                                       Container(
-                                        height: 20,
-                                          width: 80,
+                                        height: 40,
+                                          width: 60,
                                           decoration: BoxDecoration(
                                               gradient: LinearGradient(
                                                 begin: Alignment.bottomLeft,
@@ -137,7 +139,9 @@ class _Course_listState extends State<Course_list> {
                                                   Color.fromRGBO(0,100,0,100),
                                                 ],
                                               ), borderRadius: BorderRadius.circular(20)),
-                                          child: FlatButton(onPressed: (){}, child: Text("Buy",style: TextStyle(color: Colors.white),),),)
+                                          child: FlatButton(onPressed: (){
+                                            Navigator.push(context, MaterialPageRoute(builder:(context)=>Course_details()));
+                                          }, child: Text("Buy",style: TextStyle(color: Colors.white),),),)
                                     ],
                                   ),
                                 ),
